@@ -1,0 +1,36 @@
+server:
+  port: 8083
+
+
+spring:
+  application:
+    name: microcloud-provider-user
+
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: '*'
+
+
+eureka:
+  client:
+    service-url: #客户端进行Eureka注册配置
+      defaultZone: http://admin:admin@eureka1:7001/eureka,http://admin:admin@eureka2:7002/eureka,http://admin:admin@eureka3:7003/eureka
+#      defaultZone: http://admin:admin@localhost:7001/eureka
+#      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: microcloud-provider-user
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2 #设置心跳的时间间隔（默认是30杪）
+    lease-expiration-duration-in-seconds: 5 #如果现在超过了5杪的间隔（默认是90杪）
+
+
+info:
+  app.name: microcloud-provider-user
+  company.name: infocity
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
+

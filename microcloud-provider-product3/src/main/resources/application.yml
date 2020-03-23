@@ -1,0 +1,53 @@
+server:
+  port: 8082
+
+
+mybatis:
+ mapper-locations: # 所有的mapper映射文件
+ - classpath:mapping/*.xml
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource #配置当前要使用的数据源的操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver #配置mysql的驱动程序类
+    url: jdbc:mysql://localhost:3306/spring-cloud3?serverTimezone=GMT%2B8 #数据库连接地址
+    username: root
+    password: root
+  application:
+    name: microcloud-provider-product
+#  security:
+#    user:
+#      name: admin #认证用户名
+#      password: admin  #认证密码
+#      roles:
+#       - USER #授权角色
+
+logging:
+  level:
+    com.infocity.mapper: debug
+#    org.springframework.web: TRACE
+
+management:
+  endpoint:
+    env:
+      enabled: true
+
+eureka:
+  client:
+    service-url: #客户端进行Eureka注册配置
+      defaultZone: http://admin:admin@eureka1:7001/eureka,http://admin:admin@eureka2:7002/eureka,http://admin:admin@eureka3:7003/eureka
+#      defaultZone: http://admin:admin@localhost:7001/eureka
+#      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: microcloud-provider-product3
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2 #设置心跳的时间间隔（默认是30杪）
+    lease-expiration-duration-in-seconds: 5 #如果现在超过了5杪的间隔（默认是90杪）
+
+
+info:
+  app.name: microcloud-provider-product
+  company.name: infocity
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
+

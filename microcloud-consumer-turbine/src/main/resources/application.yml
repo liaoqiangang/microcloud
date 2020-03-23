@@ -1,0 +1,15 @@
+server:
+  port: 9101
+
+eureka:
+  client:
+    service-url: #客户端进行Eureka注册配置
+      defaultZone: http://admin:admin@eureka1:7001/eureka,http://admin:admin@eureka2:7002/eureka,http://admin:admin@eureka3:7003/eureka
+    register-with-eureka: false
+
+
+
+turbine:
+  app-config: MICROCLOUD-PROVIDER-PRODUCT,MICROCLOUD-PROVIDER-USER
+  cluster-name-expression: new String("default")
+
